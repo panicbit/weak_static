@@ -1,9 +1,14 @@
 [package]
-authors = ["panicbit <panicbit.dev@gmail.com>"]
 name = "weak_static"
 version = "0.1.0"
+authors = ["panicbit <panicbit.dev@gmail.com>"]
+license = "MIT/Apache-2.0"
 
-[dependencies]
+description = "A macro for declaring lazy droppable statics."
+documentation = "https://docs.rs/weak_static"
+
+repository = "https://github.com/panicbit/weak_static"
+keywords = ["static", "lazy", "drop", "shared", "arc"]
 
 [dev-dependencies]
 lazy_static = "0.2.8"
