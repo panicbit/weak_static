@@ -63,16 +63,16 @@ macro_rules! weak_static {
             #[warn(non_snake_case)]
             {
                 lazy_static! {
-                    static ref VALUE: ::std::sync::Mutex<::std::option::Option<::std::sync::Weak<$typ>>> =
-                    ::std::default::Default::default();
+                    static ref VALUE: ::std::sync::Mutex<::std::sync::Weak<$typ>> =
+                        ::std::default::Default::default();
                 }
                 
                 let mut value = VALUE.lock().unwrap();
                 
-                value.as_ref().and_then(::std::sync::Weak::upgrade).unwrap_or_else(|| {
+                value.upgrade().unwrap_or_else(|| {
                     let new_value = ::std::sync::Arc::new($init);
 
-                    *value = Some(::std::sync::Arc::downgrade(&new_value));
+                    *value = ::std::sync::Arc::downgrade(&new_value);
                     
                     new_value
                 })
